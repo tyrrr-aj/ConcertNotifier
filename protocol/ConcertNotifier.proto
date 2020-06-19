@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+service ConcertNotifier {
+    rpc TrackConcerts (SubscriptionRequest) returns (stream ConcertEvent);
+}
+
+message SubscriptionRequest {
+    repeated string City = 1;
+    repeated string Band = 2;
+    repeated Genre Genre = 3;
+}
+
+message ConcertEvent {
+    string City = 1;
+    string Band = 2;
+}
+
+enum Genre {
+    ALL = 0;
+    SYMPHONIC_METAL = 1;
+    MELODIC_DEATH_METAL = 2;
+    POWER_METAL = 3;
+    THRASH_METAL = 4;
+    ACAPELLA_METAL = 5;
+    PROG_METAL = 6;
+}
