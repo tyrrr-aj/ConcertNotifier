@@ -44,10 +44,12 @@ def main():
 
     while True:
         try:
-            stream = notifier.TrackConcerts(request)
+            stream_it = iter(notifier.TrackConcerts(request))
+            first_concert = next(stream_it)
             print('Connection successful')
             interval = 0.1
-            for concert in stream:
+            print(f'{first_concert.Band} are going to play in {first_concert.City}')
+            for concert in stream_it:
                 print(f'{concert.Band} are going to play in {concert.City}')
         except:
             print(f'ERROR: Connection with server lost, trying to recover in {interval} seconds...')
